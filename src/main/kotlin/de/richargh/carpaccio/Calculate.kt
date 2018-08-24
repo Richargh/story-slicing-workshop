@@ -12,6 +12,8 @@ private fun vat(countryCode: String): Double{
         "LU" -> 1.17
         "DE" -> 1.19
         "GB" -> 1.2
+        "PL" -> 1.23
+        "HU" -> 1.27
         else -> 1.0
     }
 }

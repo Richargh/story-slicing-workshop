@@ -2,6 +2,7 @@ package de.richargh.carpaccio
 
 import de.richargh.carpaccio.CarpaccioMain.Companion.mainTotalPrice
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.within
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
@@ -62,6 +63,26 @@ internal class CarpaccioTest {
 
     @ParameterizedTest
     @CsvSource(
+            "PL 0:100.0, 0.0",
+            "PL 1:100.0, 123.0",
+            "PL 1:100.0 4:50.0, 369.0"
+    )
+    fun `should calculate correct price for Poland`(args: String, expected: Double) {
+        assertThat(mainTotalPrice(*args.split(" ").toTypedArray())).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+            "HU 0:100.0, 0.0",
+            "HU 1:100.0, 127.0",
+            "HU 1:100.0 4:50.0, 381.0"
+    )
+    fun `should calculate correct price for Hungary`(args: String, expected: Double) {
+        assertThat(mainTotalPrice(*args.split(" ").toTypedArray())).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @CsvSource(
             "AW 0:100.0, 0.0",
             "AW 1:1000.0, 970.0",
             "AW 1:5000.0, 4750.0",
@@ -71,5 +92,19 @@ internal class CarpaccioTest {
     )
     fun `should discount prices depending on total price`(args: String, expected: Double) {
         assertThat(mainTotalPrice(*args.split(" ").toTypedArray())).isEqualTo(expected)
+    }
+
+
+
+    @ParameterizedTest
+    @CsvSource(
+            "LU 1:1000.0, 1134.9",
+            "DE 1:1000.0, 1154.3",
+            "GB 1:1000.0, 1164.0",
+            "PL 1:1000.0, 1193.1",
+            "HU 1:1000.0, 1231.9"
+    )
+    fun `should add vat and discount prices`(args: String, expected: Double) {
+        assertThat(mainTotalPrice(*args.split(" ").toTypedArray())).isCloseTo(expected, within(0.1))
     }
 }
