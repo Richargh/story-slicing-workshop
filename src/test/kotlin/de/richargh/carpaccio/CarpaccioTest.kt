@@ -1,11 +1,12 @@
-package foo
-import foo.ElephantMain.Companion.mainTotalPrice
+package de.richargh.carpaccio
+
+import de.richargh.carpaccio.CarpaccioMain.Companion.mainTotalPrice
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
-internal class CalculateTest {
+internal class CarpaccioTest {
 
     @Test
     fun `application returns 0 when no parameter is passed`() {

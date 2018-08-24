@@ -1,7 +1,10 @@
-# Story Slicing
+# Story Slicing Workshop
 
-* [Handout][1]
+Implementation of the original exercise by Alistair Cockburn. See the handout for more details.
 
+## Run
 
+Calculate total sum in the command line with:
 
-[1]: handout.md
+`./gradlew build; java -jar build/libs/carpaccio-1.0-SNAPSHOT.jar UK 4:1.0 5:100.0`
+

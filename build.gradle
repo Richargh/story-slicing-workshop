@@ -8,7 +8,7 @@ group 'elephant'
 version currentVersion
 
 sourceCompatibility = 1.8
-mainClassName = "foo.ElephantMain"
+mainClassName = "de.richargh.carpaccio.CarpaccioMain"
 
 repositories {
     mavenCentral()
@@ -16,7 +16,6 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    compile group: 'info.picocli', name: 'picocli', version: picocli_version
 
     testCompile("org.junit.jupiter:junit-jupiter-api:$junit5_version")
     testCompile("org.junit.jupiter:junit-jupiter-params:$junit5_version")

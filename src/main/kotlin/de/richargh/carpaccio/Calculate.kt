@@ -1,13 +1,13 @@
-package foo
+package de.richargh.carpaccio
 
-fun calculate(items: List<Item>, vat: Double): Double {
+internal fun calculate(items: List<Item>, countryCode: String): Double {
     val result = items.fold(0.0) {
         total: Double, item -> total + item.totalPrice()
-    } * vat
+    } * vat(countryCode)
     return applyDiscount(result)
 }
 
-fun vat(countryCode: String): Double{
+private fun vat(countryCode: String): Double{
     return when(countryCode){
         "UK" -> 1.2
         "DE" -> 1.19
@@ -15,7 +15,7 @@ fun vat(countryCode: String): Double{
     }
 }
 
-fun applyDiscount(totalPrice: Double): Double{
+private fun applyDiscount(totalPrice: Double): Double{
     val discount = when{
         totalPrice >= 50_000 -> 0.85
         totalPrice >= 10_000 -> 0.90
