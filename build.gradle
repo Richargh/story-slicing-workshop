@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.jetbrains.kotlin.jvm' version '1.2.61'
+}
+
+group 'elephant'
+version currentVersion
+
+sourceCompatibility = 1.8
+mainClassName = "foo.ElephantMain"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compile group: 'info.picocli', name: 'picocli', version: picocli_version
+
+    testCompile("org.junit.jupiter:junit-jupiter-api:$junit5_version")
+    testCompile("org.junit.jupiter:junit-jupiter-params:$junit5_version")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:$junit5_version")
+    testCompile("org.assertj:assertj-core:$assertj_version")
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = '1.8'
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = '1.8'
+}
+
+wrapper {
+    gradleVersion = '4.8'
+}
+
+jar {
+    baseName = "${applicationName}"
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
