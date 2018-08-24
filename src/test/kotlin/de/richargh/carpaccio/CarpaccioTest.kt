@@ -52,9 +52,9 @@ internal class CarpaccioTest {
 
     @ParameterizedTest
     @CsvSource(
-            "UK 0:100.0, 0.0",
-            "UK 1:100.0, 120.0",
-            "UK 1:100.0 2:100.0, 360.0"
+            "GB 0:100.0, 0.0",
+            "GB 1:100.0, 120.0",
+            "GB 1:100.0 2:100.0, 360.0"
     )
     fun `should calculate correct price for UK`(args: String, expected: Double) {
         assertThat(mainTotalPrice(*args.split(" ").toTypedArray())).isEqualTo(expected)
