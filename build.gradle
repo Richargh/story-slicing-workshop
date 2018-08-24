@@ -4,6 +4,8 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.2.61'
 }
 
+apply plugin: 'kotlin'
+
 group 'elephant'
 version currentVersion
 
