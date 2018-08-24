@@ -1,16 +1,17 @@
 package de.richargh.carpaccio
 
 internal fun calculate(items: List<Item>, countryCode: String): Double {
-    val result = items.fold(0.0) {
+    val sum = items.fold(0.0) {
         total: Double, item -> total + item.totalPrice()
-    } * vat(countryCode)
-    return applyDiscount(result)
+    }
+    return applyDiscount(sum * vat(countryCode))
 }
 
 private fun vat(countryCode: String): Double{
     return when(countryCode){
-        "UK" -> 1.2
+        "LU" -> 1.17
         "DE" -> 1.19
+        "UK" -> 1.2
         else -> 1.0
     }
 }

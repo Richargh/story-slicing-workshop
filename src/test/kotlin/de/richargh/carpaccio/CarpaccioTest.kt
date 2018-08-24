@@ -32,11 +32,11 @@ internal class CarpaccioTest {
 
     @ParameterizedTest
     @CsvSource(
-            "UK 0:100.0, 0.0",
-            "UK 1:100.0, 120.0",
-            "UK 1:100.0 2:100.0, 360.0"
+            "LU 0:100.0, 0.0",
+            "LU 1:100.0, 117.0",
+            "LU 1:100.0 2:100.0, 351.0"
     )
-    fun `should calculate correct price for UK`(args: String, expected: Double) {
+    fun `should calculate correct price for Luxemburg`(args: String, expected: Double) {
         assertThat(mainTotalPrice(*args.split(" ").toTypedArray())).isEqualTo(expected)
     }
 
@@ -47,6 +47,16 @@ internal class CarpaccioTest {
             "DE 1:100.0 2:100.0, 357.0"
     )
     fun `should calculate correct price for Germany`(args: String, expected: Double) {
+        assertThat(mainTotalPrice(*args.split(" ").toTypedArray())).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+            "UK 0:100.0, 0.0",
+            "UK 1:100.0, 120.0",
+            "UK 1:100.0 2:100.0, 360.0"
+    )
+    fun `should calculate correct price for UK`(args: String, expected: Double) {
         assertThat(mainTotalPrice(*args.split(" ").toTypedArray())).isEqualTo(expected)
     }
 
