@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'org.jetbrains.kotlin.jvm' version '1.2.61'
+    id 'info.solidsoft.pitest' version '1.3.0'
 }
 
 apply plugin: 'kotlin'
@@ -19,11 +20,12 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
-    testCompile("org.junit.jupiter:junit-jupiter-api:$junit5_version")
-    testCompile("org.junit.jupiter:junit-jupiter-params:$junit5_version")
-    testRuntime("org.junit.jupiter:junit-jupiter-engine:$junit5_version")
+    testCompile "junit:junit:4.11"
     testCompile("org.assertj:assertj-core:$assertj_version")
+    testCompile 'pl.pragmatists:JUnitParams:1.1.1'
 }
+
+build.dependsOn 'pitest'
 
 compileKotlin {
     kotlinOptions.jvmTarget = '1.8'

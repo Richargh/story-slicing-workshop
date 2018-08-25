@@ -1,13 +1,15 @@
 package de.richargh.carpaccio
 
 import de.richargh.carpaccio.CarpaccioMain.Companion.mainTotalPrice
+import junitparams.JUnitParamsRunner
+import junitparams.Parameters
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.within
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.CsvSource
+import org.junit.Test
+import org.junit.runner.RunWith
 
-internal class CarpaccioTest {
+@RunWith(JUnitParamsRunner::class)
+class CarpaccioTest {
 
     @Test
     fun `application returns 0 when no parameter is passed`() {
@@ -19,8 +21,8 @@ internal class CarpaccioTest {
         assertThat(mainTotalPrice("AW")).isEqualTo(0.0)
     }
 
-    @ParameterizedTest
-    @CsvSource(
+    @Test
+    @Parameters(
         "AW 0:100.0, 0.0",
         "AW 1:100.0, 100.0",
         "AW 2:100.0, 200.0",
@@ -31,8 +33,8 @@ internal class CarpaccioTest {
         assertThat(mainTotalPrice(*args.split(" ").toTypedArray())).isEqualTo(expected)
     }
 
-    @ParameterizedTest
-    @CsvSource(
+    @Test
+    @Parameters(
             "LU 0:100.0, 0.0",
             "LU 1:100.0, 117.0",
             "LU 1:100.0 2:100.0, 351.0"
@@ -41,8 +43,8 @@ internal class CarpaccioTest {
         assertThat(mainTotalPrice(*args.split(" ").toTypedArray())).isEqualTo(expected)
     }
 
-    @ParameterizedTest
-    @CsvSource(
+    @Test
+    @Parameters(
             "DE 0:100.0, 0.0",
             "DE 1:100.0, 119.0",
             "DE 1:100.0 2:100.0, 357.0"
@@ -51,8 +53,8 @@ internal class CarpaccioTest {
         assertThat(mainTotalPrice(*args.split(" ").toTypedArray())).isEqualTo(expected)
     }
 
-    @ParameterizedTest
-    @CsvSource(
+    @Test
+    @Parameters(
             "GB 0:100.0, 0.0",
             "GB 1:100.0, 120.0",
             "GB 1:100.0 2:100.0, 360.0"
@@ -61,8 +63,8 @@ internal class CarpaccioTest {
         assertThat(mainTotalPrice(*args.split(" ").toTypedArray())).isEqualTo(expected)
     }
 
-    @ParameterizedTest
-    @CsvSource(
+    @Test
+    @Parameters(
             "PL 0:100.0, 0.0",
             "PL 1:100.0, 123.0",
             "PL 1:100.0 4:50.0, 369.0"
@@ -71,8 +73,8 @@ internal class CarpaccioTest {
         assertThat(mainTotalPrice(*args.split(" ").toTypedArray())).isEqualTo(expected)
     }
 
-    @ParameterizedTest
-    @CsvSource(
+    @Test
+    @Parameters(
             "HU 0:100.0, 0.0",
             "HU 1:100.0, 127.0",
             "HU 1:100.0 4:50.0, 381.0"
@@ -81,8 +83,8 @@ internal class CarpaccioTest {
         assertThat(mainTotalPrice(*args.split(" ").toTypedArray())).isEqualTo(expected)
     }
 
-    @ParameterizedTest
-    @CsvSource(
+    @Test
+    @Parameters(
             "AW 0:100.0, 0.0",
             "AW 1:1000.0, 970.0",
             "AW 1:5000.0, 4750.0",
@@ -96,8 +98,8 @@ internal class CarpaccioTest {
 
 
 
-    @ParameterizedTest
-    @CsvSource(
+    @Test
+    @Parameters(
             "LU 1:1000.0, 1134.9",
             "DE 1:1000.0, 1154.3",
             "GB 1:1000.0, 1164.0",
